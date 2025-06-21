@@ -53,13 +53,21 @@ Follow these steps to get the project up and running on your local machine:
     ```bash
     npm install
     ```
-3.  **Run the development server:**
+3.  **Declare .env**
+    ```bash
+      GITHUB_API_TOKEN = your_token
+      REACT_APP_API_URL = https://api.github.com
+      GITHUB_API_VERSION = '2022-11-28' 
+    ```
+    The application need .env.local for development, .env.production for production.
+    
+4.  **Run the development server:**
     ```bash
     npm run dev
     ```
     The application will be accessible at `http://localhost:5173` (or another port as indicated in your terminal).
 
-4.  **Build for production (optional, for local testing of build):**
+5.  **Build for production (optional, for local testing of build):**
     ```bash
     npm run build
     ```
