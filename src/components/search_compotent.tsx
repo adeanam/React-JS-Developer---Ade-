@@ -1,16 +1,23 @@
-import { useEffect, useState } from 'react'
-import { GetAllRepository } from '../services/octo_services'
-import type { IDataResRepository } from '../interface/i_repository'
-import { Search, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { GetSearchedUser, GetUserRepository } from '../services/octo_services';
+import { Search, X, ExternalLink, Clock, Star, ChevronDown, ChevronUp, Globe, FileText, Image, Video } from 'lucide-react';
 import GH_Logo from '../assets/gh_logo.webp';
 import { ToastContainer, toast } from 'react-toastify';
 
+//Import Components
+import {DetailSearchComponent} from './detail_search_component';
 
-export const SearchComponents = () => {
-    const [listRepo, setListRepo] = useState<IDataResRepository | null>(null);
+//Import Interfaces Class
+import type { IUser, IItemsUser, IExpadedUser } from '../interface/i_users';
+import type { IRepository } from '../interface/i_repository';
+
+export const SearchComponent = () => {
+    const [listUser, setListUser] = useState<IUser | null>(null);
+    
     const [isSearchActive, setIsSearchActive] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [stateSearch, setStateSearch] = useState<string>("")
+    const [stateSearch, setStateSearch] = useState<string>("");
+    const [expandedResults, setExpandedResults] = useState({} as IExpadedUser);
 
     const handleSearchFocus = () => {
         setIsSearchActive(true);
@@ -20,11 +27,11 @@ export const SearchComponents = () => {
         setIsSearchActive(false);
     };
 
-   const fetchListRepository = async (nameRepo: string) => {
+   const fetchListUsers = async (nameRepo: string) => {
         setIsLoading(true)
         try{
-            const response: IDataResRepository = await GetAllRepository(nameRepo);
-            setListRepo(response)
+            const response: IUser = await GetSearchedUser(nameRepo);
+            setListUser(response)
             setIsLoading(false)
         }catch(error: unknown){
             if (typeof error === 'string') {
@@ -35,10 +42,20 @@ export const SearchComponents = () => {
         }
     }
 
+    const toggleResultExpansion = (resultId: number) => {
+      setExpandedResults((prev: any) => ({    
+        ...prev,
+        [resultId]: !prev[resultId]
+      }));
+    };
+
+
+
     useEffect(() =>{
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'Enter') {
-                fetchListRepository(stateSearch);
+                fetchListUsers(stateSearch);
+
             }
         };
         window.addEventListener('keydown', handleKeyDown);
@@ -47,16 +64,38 @@ export const SearchComponents = () => {
         };
     },[stateSearch])
 
-    const enableDropSearch = listRepo && listRepo?.items.length > 0 && isSearchActive && !isLoading;
+    //const enableDropSearch = listRepo && listRepo?.items.length > 0 && isSearchActive && !isLoading;
+    const showResult = listUser && listUser?.items.length > 0 && isSearchActive && !isLoading;
+    const showCountResult = listUser && listUser?.items.length ;
   return (
-      <div 
-        className={`w-full max-w-2xl transition-all duration-700 ease-in-out transform ${
-          isSearchActive 
-            ? '-translate-y-32 scale-110' 
-            : 'translate-y-0 scale-100'
-        }`}
-      >
+    <>
         <ToastContainer />
+        {/* Logo Container */}
+        <div 
+            className={`transition-all duration-700 ease-in-out transform ${
+            isSearchActive 
+                ? 'opacity-0 -translate-y-12 scale-75 pointer-events-none' 
+                : 'opacity-100 translate-y-0 scale-100'
+            }`}
+        >
+            <div className="bg-white rounded-full p-8 shadow-2xl mb-12 flex items-center justify-center">
+            <img src={GH_Logo} alt="Github Logo" className="w-40 h-30 object-cover" />
+            </div>
+            <h1 className="text-4xl font-bold text-gray-800 text-center mb-4">
+            Search User Repo
+            </h1>
+            <p className="text-gray-600 text-center text-lg">
+            Search other User Repository on Github
+            </p>
+        </div>
+        <div 
+            className={`w-full max-w-2xl transition-all duration-700 ease-in-out transform ${
+            isSearchActive 
+                ? '-translate-y-32 scale-110' 
+                : 'translate-y-0 scale-100'
+            }`}
+        >
+        {/* Search Input Container */}
         <div className="relative">
           {/* Search Input */}
           <div className="relative">
@@ -86,11 +125,11 @@ export const SearchComponents = () => {
             )}
           </div>
 
-          {/* Search Suggestions - Muncul saat search aktif */}
+          {/* Search Suggestions */}
           {/* {enableDropSearch && (
             <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in slide-in-from-top-2 duration-300">
               <div className="p-2">
-                {listRepo.items.slice(0, 5).map((suggestion, index) => (
+                {listRepo.items.map((suggestion, index) => (
                   <div
                     key={index}
                     className="px-4 py-3 hover:bg-gray-50 cursor-pointer rounded-xl transition-colors duration-200 flex items-center space-x-3"
@@ -103,9 +142,19 @@ export const SearchComponents = () => {
               </div>
             </div>
           )} */}
+
+          {/* Search Result  */}
+          <DetailSearchComponent 
+            showResult={showResult ?? false}
+            showCountResult={showCountResult ?? 0}
+            stateSearch={stateSearch}
+            listUser={listUser ?? null}
+          />
+          
         </div>
       </div>
+      </>
   )
 }
 
-export default SearchComponents
+export default SearchComponent

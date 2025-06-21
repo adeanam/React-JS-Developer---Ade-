@@ -1,4 +1,4 @@
-export const FooterComponents = () => {
+export const FooterComponent = () => {
   return (
       <footer className={`fixed bottom-0 left-0 right-0 p-6 transition-all duration-700 opacity-100`}>
         <div className="text-center">
@@ -16,4 +16,4 @@ export const FooterComponents = () => {
   );
 }
 
-export default FooterComponents;
+export default FooterComponent;

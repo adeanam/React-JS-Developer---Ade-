@@ -1,8 +1,6 @@
 # Note Perubahan
-## Version [v1.0.1]
+## Version [v1.0.2]
 ```js
-1. Added home page
-2. Added Service, components, helper and interface.
-3. Loadash debounce not working because Github API limitation.
+1. Update Search and detail user repository 
 
 ```

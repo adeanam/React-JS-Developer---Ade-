@@ -1,14 +1,4 @@
-export interface ISearchRepository {
-    repoName: string;
-}
-
-export interface IDataResRepository{
-    incomplete_results: boolean;
-    items: IDetailRepository[];
-    total_count: number;
-}
-
-export interface IDetailRepository {
+export interface IRepository {
     allow_forking: boolean;
     archive_url: string;
     archived: boolean;
@@ -65,7 +55,7 @@ export interface IDetailRepository {
     notifications_url: string;
     open_issues: number;
     open_issues_count: number;
-    owner: IDetailRepositoryOwner;
+    owner: IRepositoryOwner;
     private: boolean;
     pulls_url: string;
     pushed_at: string;
@@ -91,7 +81,7 @@ export interface IDetailRepository {
     web_commit_signoff_required: boolean;
 }
 
-export interface IDetailRepositoryOwner {
+export interface IRepositoryOwner {
     login: string;
     id: number;
     node_id: string;
