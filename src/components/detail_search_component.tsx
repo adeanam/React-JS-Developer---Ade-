@@ -6,12 +6,14 @@ import type { IUser, IItemsUser, IExpadedUser } from '../interface/i_users';
 import type { IRepository } from '../interface/i_repository';
 
 interface DetailSearchComponentProps {
+    isSearchActive: boolean;
+    isLoading: boolean;
     showResult: boolean;
     showCountResult: number;
     stateSearch: string;
     listUser: IUser | null;
 }
-export const DetailSearchComponent = ({ showResult, showCountResult, stateSearch, listUser }: DetailSearchComponentProps) => {
+export const DetailSearchComponent = ({ isLoading, isSearchActive, showResult, showCountResult, stateSearch, listUser }: DetailSearchComponentProps) => {
     const [expandedResults, setExpandedResults] = useState({} as IExpadedUser);
 
     const toggleResultExpansion = (resultId: number) => {
@@ -21,10 +23,12 @@ export const DetailSearchComponent = ({ showResult, showCountResult, stateSearch
       }));
     };
 
+    const isLoadingSkeleton = isLoading && isSearchActive;
+
   return (
     <>
         {/* Search Result  */}
-        {showResult && listUser && (
+        {(showResult && listUser) ? (
         <div className="mt-6 animate-in slide-in-from-bottom-4 duration-500">
             <div className="mb-4 px-2">
             <p className="text-gray-600 text-sm">
@@ -106,7 +110,15 @@ export const DetailSearchComponent = ({ showResult, showCountResult, stateSearch
             ))}
             </div>
         </div>
-        )}
+        ) : isLoadingSkeleton ?
+            <div>
+                <div className="animate-pulse bg-gray-300 h-40 w-full rounded-lg mt-10"></div>
+                <div className="animate-pulse bg-gray-300 h-40 w-full rounded-lg mt-10"></div>
+                <div className="animate-pulse bg-gray-300 h-40 w-full rounded-lg mt-10"></div>
+                <div className="animate-pulse bg-gray-300 h-40 w-full rounded-lg mt-10"></div>
+            </div>
+          :   []
+        }
     </>
   )
 }

@@ -1,14 +1,16 @@
 {
   "name": "vite-project",
   "private": true,
-  "version": "v1.0.3",
+  "version": "v1.0.4",
   "type": "module",
+  "homepage": "https://adeanam.github.io/ReactJSDeveloper-Ade/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.10",
@@ -50,6 +52,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adeanam/React-JS-Developer---Ade-/issues"
-  },
-  "homepage": "https://github.com/adeanam/React-JS-Developer---Ade-#readme"
+  }
 }

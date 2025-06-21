@@ -14,7 +14,7 @@ export const SearchComponent = () => {
     const [listUser, setListUser] = useState<IUser | null>(null);
     
     const [isSearchActive, setIsSearchActive] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [stateSearch, setStateSearch] = useState<string>("");
 
     const handleSearchFocus = () => {
@@ -54,7 +54,7 @@ export const SearchComponent = () => {
     },[stateSearch])
 
     //const enableDropSearch = listRepo && listRepo?.items.length > 0 && isSearchActive && !isLoading;
-    const showResult = listUser && listUser?.items.length > 0 && isSearchActive && !isLoading;
+    const showResult = listUser && listUser?.items.length > 0 && isSearchActive && !isLoading && isSearchActive;
     const showCountResult = listUser && listUser?.items.length ;
   return (
     <>
@@ -134,6 +134,8 @@ export const SearchComponent = () => {
 
           {/* Search Result  */}
           <DetailSearchComponent 
+            isLoading= {isLoading ?? false}
+            isSearchActive={isSearchActive ?? false}
             showResult={showResult ?? false}
             showCountResult={showCountResult ?? 0}
             stateSearch={stateSearch}
