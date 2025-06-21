@@ -15,10 +15,12 @@ export const SearchComponent = () => {
     
     const [isSearchActive, setIsSearchActive] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [doneSearch, setDoneSearch] = useState(false);
     const [stateSearch, setStateSearch] = useState<string>("");
 
     const handleSearchFocus = () => {
         setIsSearchActive(true);
+        setDoneSearch(false)
     };
 
     const handleClose = () => {
@@ -26,14 +28,17 @@ export const SearchComponent = () => {
         setListUser(null);
         setStateSearch("")
         setIsSearchActive(false);
+        setDoneSearch(false)
     };
 
    const fetchListUsers = async (nameRepo: string) => {
-        setIsLoading(true)
+       handleSearchFocus();
+       setIsLoading(true)
         try{
             const response: IUser = await GetSearchedUser(nameRepo);
             setListUser(response)
             setIsLoading(false)
+            setDoneSearch(true)
         }catch(error: unknown){
             if (typeof error === 'string') {
                 toast.error(error, {
@@ -57,7 +62,7 @@ export const SearchComponent = () => {
         };
     },[stateSearch])
 
-    const showResult = listUser && listUser?.items.length > 0 && isSearchActive && !isLoading && isSearchActive;
+    const showResult = listUser && listUser?.items.length > 0 && isSearchActive && !isLoading;
     const showCountResult = listUser && listUser?.items.length ;
   return (
     <>
@@ -125,6 +130,7 @@ export const SearchComponent = () => {
             showCountResult={showCountResult ?? 0}
             stateSearch={stateSearch}
             listUser={listUser ?? null}
+            doneSearch={doneSearch ?? false}
           />
           
         </div>

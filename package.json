@@ -1,7 +1,7 @@
 {
   "name": "vite-project",
   "private": true,
-  "version": "v1.0.9",
+  "version": "v1.0.10",
   "type": "module",
   "homepage": "https://adeanam.github.io/ReactJSDeveloper-Ade/",
   "scripts": {

@@ -1,5 +1,5 @@
 # ReactJSDeveloper-Ade
-# Version v1.0.9
+# Version v1.0.10
 ## Table of Contents
 
 * [Introduction](#introduction)
@@ -81,6 +81,7 @@ ReactJSDeveloper-Ade
 │   │   ├── detail_search_component.tsx   # Card from search component
 │   │   ├── footer_component.tsx          # Footer component
 │   │   └── search_component.tsx          # Search bar component
+│   │   └── search_notfound.tsx           # Message component for not found username
 │   ├── helper/                           # Helper functions or utilities
 │   │   ├── api_helper.tsx                # Helper for preparing API
 │   ├── interface/                        # TypeScript interfaces/types
@@ -113,6 +114,7 @@ ReactJSDeveloper-Ade
 The application implements basic error handling for scenarios such as:
 
 * **Error failed fetch API:** Displaying user-friendly messages for failed data fetches through notification.
+* **Error username not found:** Displaying message below search bar after searching if username is not found.
 
 ## UX Practices
 

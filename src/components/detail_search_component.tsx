@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import {  ExternalLink, Star, ChevronDown, ChevronUp } from 'lucide-react';
 
+//Import Component
+import { UsernameNotFound } from '../components/search_notfound';
+
 //Import Interfaces Class
 import type { IUser, IItemsUser, IExpadedUser } from '../interface/i_users';
 import type { IRepository } from '../interface/i_repository';
@@ -12,8 +15,9 @@ interface DetailSearchComponentProps {
     showCountResult: number;
     stateSearch: string;
     listUser: IUser | null;
+    doneSearch: boolean;
 }
-export const DetailSearchComponent = ({ isLoading, isSearchActive, showResult, showCountResult, stateSearch, listUser }: DetailSearchComponentProps) => {
+export const DetailSearchComponent = ({ isLoading, isSearchActive, showResult, showCountResult, stateSearch, listUser, doneSearch }: DetailSearchComponentProps) => {
     const [expandedResults, setExpandedResults] = useState({} as IExpadedUser);
 
     const toggleResultExpansion = (resultId: number) => {
@@ -24,7 +28,8 @@ export const DetailSearchComponent = ({ isLoading, isSearchActive, showResult, s
     };
 
     const isLoadingSkeleton = isLoading && isSearchActive;
-
+    const noUsernameFound = doneSearch && isSearchActive && showCountResult <= 0;
+    
   return (
     <>
         {/* Search Result  */}
@@ -117,7 +122,9 @@ export const DetailSearchComponent = ({ isLoading, isSearchActive, showResult, s
                 <div className="animate-pulse bg-gray-300 h-40 w-full rounded-lg mt-10"></div>
                 <div className="animate-pulse bg-gray-300 h-40 w-full rounded-lg mt-10"></div>
             </div>
-          :   []
+          : noUsernameFound ?
+                <UsernameNotFound />
+          :  []
         }
     </>
   )
