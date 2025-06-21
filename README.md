@@ -20,7 +20,7 @@
 
 This project is a solution to the React JS Developer technical assessment. It demonstrates my ability to build a React application using TypeScript, deploy it, and adhere to best practices for code quality and user experience within a given set of requirements.
 
-The primary goal of this application is to make a application to fetch user and their repository data up to 5 then when clicked, it will dropdown and show list of open or public repository. Beside that design the simple UI / UX to make more confortable to use and watch.
+The primary goal of this application is to make a application to fetch user and their repository data up to 5 then when clicked, it will dropdown and show list of open or public repository. Beside that design the simple UI / UX to make more comfortable to use and watch.
 
 ## Live Demo
 
@@ -31,14 +31,14 @@ You can access a live version of this application here:
 
 This application includes the following functionalities:
 
-* **Search Repository:** Search and type from menu bar then press or click enter, then the feature will show result of searched username repository.
+* **Search Repository:** Search and type from menu bar then press or click enter, then the feature will show result of searched username and their repository.
 
 ## Technologies Used
 
 * **React:** A JavaScript library for building user interfaces.
 * **TypeScript:** A strongly typed superset of JavaScript that compiles to plain JavaScript.
 * **Vite:** A fast build tool for modern web projects.
-* **Tailwind CSS** For styling the application.
+* **Tailwind CSS:** For simple and fast styling the application.
 
 ## Setup and Installation
 
@@ -52,22 +52,16 @@ Follow these steps to get the project up and running on your local machine:
 2.  **Install dependencies:**
     ```bash
     npm install
-    # or yarn install
-    # or pnpm install
     ```
 3.  **Run the development server:**
     ```bash
     npm run dev
-    # or yarn dev
-    # or pnpm dev
     ```
     The application will be accessible at `http://localhost:5173` (or another port as indicated in your terminal).
 
 4.  **Build for production (optional, for local testing of build):**
     ```bash
     npm run build
-    # or yarn build
-    # or pnpm build
     ```
     This will create a `dist` folder with the production-ready build, then:
     ```bash
@@ -78,7 +72,7 @@ Follow these steps to get the project up and running on your local machine:
 ## Project Structure
 
 The project follows a standard Vite/React application structure. Due to the time constraint of a 1-day assessment, the component modularity is focused on functionality rather than strict Atomic Design principles.
-
+```
 ReactJSDeveloper-Ade
 ├── public/                               # Static assets
 ├── src/                                  # Source code
@@ -112,6 +106,7 @@ ReactJSDeveloper-Ade
 ├── tsconfig.json                         # Base TypeScript configuration
 ├── tsconfig.node.json                    # TypeScript configuration for Node.js environment
 └── vite.config.ts                        # Vite build configuration
+```
 
 ## Error Handling
 
@@ -123,8 +118,8 @@ The application implements basic error handling for scenarios such as:
 
 Good User Experience (UX) practices have been considered in the development:
 
-* **Loading States:** Visual indicators (e.g., loading spinners, skeleton loaders) are provided when data is being fetched or an action is in progress to inform the user.
-* **Keyboard Accessibility:** Interactive elements (e.g., buttons, form inputs) are navigable and operable using keyboard controls (Tab, Enter, Space).
+* **Loading States:** Visual indicators (e.g., skeleton loaders) are provided when data is being fetched or an action is in progress to inform the user.
+* **Keyboard Accessibility:** Interactive elements (e.g., buttons, form inputs) are navigable and operable using keyboard controls (Enter, Space, ESC).
 
 ## Testing
 
@@ -138,6 +133,6 @@ The application has been designed with responsiveness in mind to ensure a proper
 
 If you have any questions or feedback, feel free to reach out:
 
-**[Your Name]**
+**Ade**
 [adeca299@gmail.com]
 [https://www.linkedin.com/in/adeanam/]
