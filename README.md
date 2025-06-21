@@ -10,7 +10,7 @@
 * [Project Structure](#project-structure)
 * [Error Handling](#error-handling)
 * [UX Practices](#ux-practices)
-* [Testing (Optional)](#testing-optional)
+* [Testing](#testing)
 * [Mobile View](#mobile-view)
 * [Contact](#contact)
 
@@ -134,5 +134,5 @@ The application has been designed with responsiveness in mind to ensure a proper
 If you have any questions or feedback, feel free to reach out:
 
 **Ade**
-[adeca299@gmail.com]
-[https://www.linkedin.com/in/adeanam/]
+adeca299@gmail.com
+https://www.linkedin.com/in/adeanam/
