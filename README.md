@@ -1,5 +1,5 @@
-# [ReactJSDeveloper-Ade]
-
+# ReactJSDeveloper-Ade
+# Version v1.0.7
 ## Table of Contents
 
 * [Introduction](#introduction)
