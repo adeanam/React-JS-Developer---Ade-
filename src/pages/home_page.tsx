@@ -1,7 +1,7 @@
 
 //Import Components
 import { FooterComponent } from '../components/footer_component';
-import { SearchComponent } from '../components/search_compotent';
+import { SearchComponent } from '../components/search_component';
 
 export const home_page = () => {
 

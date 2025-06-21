@@ -4,8 +4,14 @@ import type { IUser, IItemsUser } from '../interface/i_users';
 import type { IRepository } from '../interface/i_repository';
 
 export const GetSearchedUser = async (repoName: string) => {
+     
       try {
             const response = await API.request(`GET /search/users?q=${repoName}&per_page=5`)
+
+            if (response.data?.message?.includes('rate limit') || 
+                  response.headers['x-ratelimit-remaining'] === '0') {
+                  throw new Error('API rate limit exceeded');
+            }
             const result = await GetUserRepository(response.data)
             return result;
       } catch (error) {
@@ -17,6 +23,10 @@ export const GetUserRepository = async (userList: IUser) => {
       try {
             const getListRepoUser = userList.items.map(async (user: IItemsUser) => {
                   const response = await API.request(`GET /users/${user.login}/repos`);
+                  if (response.data?.message?.includes('rate limit') || 
+                        response.headers['x-ratelimit-remaining'] === '0') {
+                        throw new Error('API rate limit exceeded');
+                  }
                   const getItemsUser: IRepository[] = response.data;
                   return {
                         ...user,

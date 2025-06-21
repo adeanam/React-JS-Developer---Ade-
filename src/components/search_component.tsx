@@ -32,6 +32,7 @@ export const SearchComponent = () => {
             setListUser(response)
             setIsLoading(false)
         }catch(error: unknown){
+          console.log("error depan",error)
             if (typeof error === 'string') {
                 toast.error(error, {
                     autoClose: false,
@@ -44,7 +45,10 @@ export const SearchComponent = () => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'Enter') {
                 fetchListUsers(stateSearch);
-
+            }else if (event.key === 'Escape') {
+              setListUser(null);
+              setStateSearch("")
+              setIsSearchActive(false);
             }
         };
         window.addEventListener('keydown', handleKeyDown);
@@ -53,7 +57,6 @@ export const SearchComponent = () => {
         };
     },[stateSearch])
 
-    //const enableDropSearch = listRepo && listRepo?.items.length > 0 && isSearchActive && !isLoading;
     const showResult = listUser && listUser?.items.length > 0 && isSearchActive && !isLoading && isSearchActive;
     const showCountResult = listUser && listUser?.items.length ;
   return (
@@ -113,24 +116,6 @@ export const SearchComponent = () => {
               </button>
             )}
           </div>
-
-          {/* Search Suggestions */}
-          {/* {enableDropSearch && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in slide-in-from-top-2 duration-300">
-              <div className="p-2">
-                {listRepo.items.map((suggestion, index) => (
-                  <div
-                    key={index}
-                    className="px-4 py-3 hover:bg-gray-50 cursor-pointer rounded-xl transition-colors duration-200 flex items-center space-x-3"
-                    onClick={() => setStateSearch(suggestion.owner.login)}
-                  >
-                    <Search size={16} className="text-gray-400" />
-                    <span className="text-gray-700">{suggestion.owner.login}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )} */}
 
           {/* Search Result  */}
           <DetailSearchComponent 
