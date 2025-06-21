@@ -1,6 +1,6 @@
 # Note Perubahan
-## Version [v1.0.2]
+## Version [v1.0.3]
 ```js
-1. Update Search and detail user repository 
+1. Update for github pages
 
 ```

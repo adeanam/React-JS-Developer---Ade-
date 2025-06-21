@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { GetSearchedUser, GetUserRepository } from '../services/octo_services';
-import { Search, X, ExternalLink, Clock, Star, ChevronDown, ChevronUp, Globe, FileText, Image, Video } from 'lucide-react';
+import { GetSearchedUser } from '../services/octo_services';
+import { Search, X } from 'lucide-react';
 import GH_Logo from '../assets/gh_logo.webp';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -8,8 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import {DetailSearchComponent} from './detail_search_component';
 
 //Import Interfaces Class
-import type { IUser, IItemsUser, IExpadedUser } from '../interface/i_users';
-import type { IRepository } from '../interface/i_repository';
+import type { IUser } from '../interface/i_users';
 
 export const SearchComponent = () => {
     const [listUser, setListUser] = useState<IUser | null>(null);
@@ -17,7 +16,6 @@ export const SearchComponent = () => {
     const [isSearchActive, setIsSearchActive] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [stateSearch, setStateSearch] = useState<string>("");
-    const [expandedResults, setExpandedResults] = useState({} as IExpadedUser);
 
     const handleSearchFocus = () => {
         setIsSearchActive(true);
@@ -41,15 +39,6 @@ export const SearchComponent = () => {
             }
         }
     }
-
-    const toggleResultExpansion = (resultId: number) => {
-      setExpandedResults((prev: any) => ({    
-        ...prev,
-        [resultId]: !prev[resultId]
-      }));
-    };
-
-
 
     useEffect(() =>{
         const handleKeyDown = (event: KeyboardEvent) => {

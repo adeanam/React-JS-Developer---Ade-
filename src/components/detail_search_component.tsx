@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react';
-import { GetSearchedUser, GetUserRepository } from '../services/octo_services';
-import { Search, X, ExternalLink, Clock, Star, ChevronDown, ChevronUp, Globe, FileText, Image, Video } from 'lucide-react';
-import GH_Logo from '../assets/gh_logo.webp';
-import { ToastContainer, toast } from 'react-toastify';
+import { useState } from 'react';
+import {  ExternalLink, Star, ChevronDown, ChevronUp } from 'lucide-react';
 
 //Import Interfaces Class
 import type { IUser, IItemsUser, IExpadedUser } from '../interface/i_users';
