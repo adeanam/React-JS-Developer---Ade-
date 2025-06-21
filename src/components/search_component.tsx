@@ -23,6 +23,9 @@ export const SearchComponent = () => {
 
     const handleClose = () => {
         setIsSearchActive(false);
+        setListUser(null);
+        setStateSearch("")
+        setIsSearchActive(false);
     };
 
    const fetchListUsers = async (nameRepo: string) => {
@@ -32,7 +35,6 @@ export const SearchComponent = () => {
             setListUser(response)
             setIsLoading(false)
         }catch(error: unknown){
-          console.log("error depan",error)
             if (typeof error === 'string') {
                 toast.error(error, {
                     autoClose: false,
@@ -46,9 +48,7 @@ export const SearchComponent = () => {
             if (event.key === 'Enter') {
                 fetchListUsers(stateSearch);
             }else if (event.key === 'Escape') {
-              setListUser(null);
-              setStateSearch("")
-              setIsSearchActive(false);
+              handleClose()
             }
         };
         window.addEventListener('keydown', handleKeyDown);
